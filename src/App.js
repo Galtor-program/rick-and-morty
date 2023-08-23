@@ -7,6 +7,22 @@ function App() {
   const initialUrl = "https://rickandmortyapi.com/api/character";
   const [characters, setCharacters] = useState([]);
   const [info, setInfo] = useState({});
+  const [search, setSearch] = useState ("")
+  
+
+const searcher = (e) => {
+  setSearch(e.target.value)
+  console.log(e.target.value)
+}
+
+let resultados = []
+if(!search)
+{
+  resultados = characters
+
+} else{
+  resultados = characters.filter((dato) => dato.name.toLowerCase().includes(search.toLowerCase()))
+}
 
 
 
@@ -33,10 +49,15 @@ function App() {
 
   return (
     <>
+   
     <Navbar brand="Rick and Morty APP" />
+    
+     <br/>
+     <input value={search}  onChange={searcher}  type="text" placeholder='Busqueda por nombre en cada pagina' className='form-control'></input>  
     <Pagination prev={info.prev} next={info.next} onPrevious={onPrevious} onNext={onNext}/>
     <div className="container mt-2">
-      <Characters characters={characters} />
+      
+      <Characters characters={resultados} />
     </div>
     
     

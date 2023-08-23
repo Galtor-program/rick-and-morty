@@ -4,7 +4,9 @@ const Characters = ({characters = []}) => {
   return (
     <div className='row'>
         
+            
             {
+               
                 characters.map((item, index) => (
                     <div key={index} className='col mb-2'>
 
